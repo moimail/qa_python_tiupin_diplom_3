@@ -68,14 +68,12 @@ class BasePage:
     @allure.step('Вводим текст в поле по локатору')
     def set_value(self, locator, value):
         """ Вводим текст в поле по локатору: {locator} """
-        return WebDriverWait(self.driver, 20).until(
-            EC.visibility_of_element_located(locator)).send_keys(value)
+        return (self.wait_for_load_element(locator)).send_keys(value)
 
     @allure.step('Получаем значение поля по локатору')
     def get_value(self, locator):
         """ Получаем значение поля по локатору: {locator} """
-        return WebDriverWait(self.driver, 20).until(
-            EC.visibility_of_element_located(locator)).get_attribute("value")
+        return (self.wait_for_load_element(locator)).get_attribute("value")
 
     @allure.step('Получаем текст в поле по локатору')
     def get_text(self, locator):
